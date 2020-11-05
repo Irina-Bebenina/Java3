@@ -69,4 +69,24 @@ class PosterManagerTest {
         Movie[] expected1 = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
         assertArrayEquals(expected1, actual1);
     }
+
+    @Test
+    void ShouldRemoteMoviesFilmId() {
+        posterManager.add(movie);
+        posterManager.add(movie1);
+        posterManager.add(movie2);
+        posterManager.add(movie3);
+        posterManager.add(movie4);
+        posterManager.add(movie5);
+        posterManager.add(movie6);
+        posterManager.add(movie7);
+        posterManager.add(movie8);
+        posterManager.add(movie9);
+        Movie[] actual = posterManager.getMovies();
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
+
+        assertArrayEquals(expected, actual);
+
+    }
 }
+

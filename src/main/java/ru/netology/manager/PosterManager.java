@@ -41,6 +41,19 @@ public class PosterManager {
         }
         return resultList;
     }
+
+    public void RemoteMoviesFilmId(int id) {
+        int i = movies.length - 1;
+        Movie[] poster = new Movie[movies.length];
+        int index = 0;
+        for (Movie movie : movies) {
+            if (movie.getFilmId() != id) {
+                poster[index] = movie;
+                index++;
+                movies = poster;
+            }
+        }
+    }
 }
 
 
