@@ -1,59 +1,38 @@
 package ru.netology.manager;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import ru.netology.domain.Movie;
 
-@Data
 
 public class PosterManager {
-    int moviesCount = 10;
+    private Movie[] items = new Movie[0];
 
-    public PosterManager() {
+    public void add(Movie item) {
+        int length = items.length + 1;
+        Movie[] tmp = new Movie[length];
+        System.arraycopy(items, 0, tmp, 0, items.length);
+        int LastIndex = tmp.length - 1;
+        tmp[LastIndex] = item;
+        items = tmp;
     }
 
-    public PosterManager(int moviesCount) {
-        this.moviesCount = moviesCount;
-    }
-
-    private Movie[] movies = new Movie[0];
-
-    public void add(Movie movie) {
-        Movie[] poster = new Movie[movies.length + 1];
-        for (int i = 0; i < movies.length; i++) {
-            poster[i] = movies[i];
-        }
-        System.arraycopy(movies, 0, poster, 0, movies.length);
-        int lastIndex = poster.length - 1;
-        poster[lastIndex] = movie;
-        movies = poster;
-    }
-
-    public Movie[] getMovies() {
-        Movie[] result = new Movie[movies.length];
+    public Movie[] getAll() {
+        Movie[] result = new Movie[items.length];
         for (int i = 0; i < result.length; i++) {
-            int index = movies.length - i - 1;
-            result[i] = movies[index];
+            int index = items.length - i - 1;
+            result[i] = items[index];
         }
-        Movie[] resultList = new Movie[moviesCount];
-        for (int i = 0; i < resultList.length; i++) {
-            resultList[i] = result[i];
-        }
-        return resultList;
+        return result;
     }
 
-    public void RemoteMoviesFilmId(int id) {
-        int i = movies.length - 1;
-        Movie[] poster = new Movie[movies.length];
+    public void removeByID(int id) {
+        int length = items.length - 1;
+        Movie[] tmp = new Movie[length];
         int index = 0;
-        for (Movie movie : movies) {
-            if (movie.getFilmId() != id) {
-                poster[index] = movie;
+        for (Movie item : items) {
+            if (item.getId() != id) {
+                tmp[index] = item;
                 index++;
-                movies = poster;
+                items = tmp;
             }
         }
     }
 }
-
-
